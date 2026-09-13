@@ -56,69 +56,32 @@ stateDiagram-v2
 
 ### Moment-to-moment rules
 
-- The character is affected by gravity.
-- After landing correctly on a platform, the character automatically jumps again.
-- The player controls horizontal movement to the left and right.
-- There is no normal jump button.
-- Horizontal speed builds through movement rather than instantly reaching maximum speed.
-- Momentum is preserved while the player is airborne.
-- Building horizontal speed before landing can therefore allow longer jumps.
-- The camera follows the player upward as height increases.
-- Platforms that move far below the camera are returned to an Object Pool.
-- Pooled platforms are reused above the player instead of constantly being destroyed and recreated.
-- New platforms must be positioned so that the next jump is physically possible.
-- The beginning of the game mainly contains simple stationary platforms.
-- Additional platform types gradually appear as the player climbs.
-- Coins or collectibles may appear around platforms and encourage more difficult jumps.
-- **Scoring:** the main score increases according to the maximum height reached.
-- Bonus score may be earned through collectibles and combos.
-- **Combo:** multiple successful jumps performed within a short period increase the combo counter and may provide bonus points.
-- **Failure:** if the player falls below the visible gameplay area, the run ends.
-- After failure, movement stops, the final score is displayed, and the player can quickly retry.
-
-### Platform types
-
-The game may contain:
-
-1. **Normal Platform**  
-   A standard stationary platform.
-
-2. **Moving Platform**  
-   Moves horizontally from side to side.
-
-3. **Breakable Platform**  
-   Breaks shortly after the player lands on it.
-
-4. **Disappearing Platform**  
-   Disappears shortly after activation.
-
-5. **Boost Platform**  
-   Gives the player a stronger upward jump.
-
-The MVP does not require every platform type. Additional types are part of the polish stage.
+- The player moves continuously left or right according to input and builds horizontal momentum.
+- Jumping is automatic: every valid landing on a platform immediately starts the next jump.
+- The player keeps horizontal momentum while airborne, so longer jumps require building speed before takeoff.
+- The camera scrolls upward once the player reaches the upper part of the screen.
+- Platforms below the visible area are recycled and reused above the player.
+- As height increases, platform spacing becomes less forgiving and special platform types may appear.
+- **Scoring:** the score increases according to the maximum height reached. Fast consecutive landings can increase a combo multiplier and award bonus points.
+- **Failure:** falling below the bottom of the screen immediately ends the run, freezes gameplay, shows the final score and high score, and allows a quick retry.
 
 ### Parameters you will need to tune
 
 | Parameter | What it controls | First guess |
 |---|---|---|
-| `moveAcceleration` | How quickly horizontal speed builds | 22 |
+| `moveAcceleration` | How quickly the player builds horizontal speed | 22 |
 | `maxMoveSpeed` | Maximum horizontal movement speed | 7 |
-| `airControl` | Amount of horizontal control while airborne | 0.85 |
-| `jumpVelocity` | Height of every automatic jump | 11 |
+| `jumpVelocity` | Height of each automatic jump | 11 |
 | `gravityScale` | How quickly the player falls after reaching the top of a jump | 2.5 |
-| `minPlatformGapY` | Minimum vertical distance between platforms | 1.5 |
-| `maxPlatformGapY` | Maximum vertical platform distance | 3.5 |
-| `maxPlatformGapX` | Maximum horizontal jump distance | 4 |
-| `cameraTriggerHeight` | Position where the camera begins moving upward | 60% of screen height |
-| `difficultyRate` | How quickly the game becomes harder | Gradual by height |
-| `movingPlatformSpeed` | Speed of moving platforms | 2 |
-| `breakDelay` | Time before a breakable platform breaks | 0.4 seconds |
-| `comboWindow` | Maximum time between jumps to continue a combo | 2 seconds |
-| `collectibleChance` | Probability that a collectible appears | 15% |
+| `minPlatformGapY` | Minimum vertical spacing between platforms | 1.5 |
+| `maxPlatformGapY` | Maximum vertical spacing between platforms | 3.5 |
+| `maxPlatformGapX` | Maximum horizontal distance between reachable platforms | 4 |
+| `difficultyRamp` | How quickly platform placement becomes harder as height increases | 5% per height milestone |
+| `comboWindow` | Time allowed between successful jumps to maintain a combo | 2.0 sec |
 
-**Where these live:** gameplay values will be stored in a `GameConfig` ScriptableObject and/or `[SerializeField]` Inspector fields so that they can be changed during playtesting without rewriting code.
+**Where these live:** a `GameConfig` ScriptableObject, allowing movement, jumping, platform spacing, and difficulty values to be balanced without changing code.
 
-**Feel target:** a first-time player should successfully land several jumps within the first three attempts. After approximately ten minutes of practice, the player should clearly improve at controlling momentum, landing accurately, building combos, and reaching greater heights.
+**Feel target:** a new player should be able to land several platforms within the first few attempts. After ten minutes of play, the player should clearly improve at controlling momentum, landing accurately, maintaining combos, and reaching a higher score.
 
 ---
 
