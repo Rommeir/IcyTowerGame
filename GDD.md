@@ -2,10 +2,10 @@
 
 | | |
 |---|---|
-| **Working title** | Icy Tower Inspired Game |
-| **Team** | Rom Meir (game design and development), Daniel Freund (game design and development) |
+| **Working title** | Icy Tower |
+| **Team** | Rom Meir , Daniel Freund |
 | **Genre** | Arcade / 2D vertical endless platformer / score-chaser |
-| **Target platform** | Android Mobile |
+| **Target platform** | PC (Windows) + Android mobile build |
 | **Engine / Unity version** | Unity 6 (6000.3.21f1), 2D |
 | **Orientation & reference resolution** | Portrait, 1080 × 1920 reference resolution, 9:16 |
 | **Expected session length** | Approximately 30 seconds – 5 minutes per run |
