@@ -1,4 +1,4 @@
-# Icy Tower Inspired Game
+# Icy Tower 
 
 ## Game Design Document
 
