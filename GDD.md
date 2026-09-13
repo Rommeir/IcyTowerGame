@@ -137,41 +137,16 @@ stateDiagram-v2
 
 | Asset | Variants / frames | Source & licence | Use |
 |---|---|---|---|
-| Playable Character 1 | Idle / jump / fall / land | Original or properly licensed | Playable character |
-| Playable Character 2 | Idle / jump / fall / land | Original or properly licensed | Playable character |
-| Playable Character 3 | Idle / jump / fall / land | Original or properly licensed | Playable character |
-| Normal Platform | 1+ visual variants | Original or properly licensed | Main gameplay |
-| Moving Platform | 1+ visual variants | Original or properly licensed | Special platform |
-| Breakable Platform | Normal / breaking / broken | Original or properly licensed | Special platform |
-| Disappearing Platform | Normal / warning / hidden | Original or properly licensed | Special platform |
-| Boost Platform | Idle / active | Original or properly licensed | Special platform |
-| Collectible | Idle / collected | Original or properly licensed | Bonus score |
-| Background | Tower / city / clouds / sky / space | Original or properly licensed | Height progression |
-| UI | Buttons / panels / icons | Original or properly licensed | Menus and HUD |
-| Jump SFX | 1–3 variants | Original or properly licensed | Gameplay feedback |
-| Landing SFX | 1–3 variants | Original or properly licensed | Gameplay feedback |
-| Collectible SFX | 1 | Original or properly licensed | Reward feedback |
-| Combo SFX | Several intensity levels | Original or properly licensed | Combo feedback |
-| Platform SFX | Break / disappear / boost | Original or properly licensed | Platform feedback |
-| Game Over SFX | 1 | Original or properly licensed | Failure feedback |
-| Background Music | At least one loop | Original or properly licensed | Gameplay atmosphere |
+| 3 Playable Characters | idle / run / jump / fall | CC0 pack or custom | Playable characters |
+| Platforms | normal + special variants | CC0 pack or custom | Gameplay platforms |
+| Backgrounds | 3–5 environments | CC0 pack or custom | Visual progression |
+| UI Elements | buttons / icons / panels | CC0 pack or custom | Menus and HUD |
+| Sound Effects | jump / land / game over / coin | freesound CC0 or custom | Gameplay feedback |
+| Music | menu loop + gameplay loop | CC0 / CC-BY | Atmosphere |
 
-**Licence note:** no copyrighted artwork, characters, music, sound effects, levels, or other assets from the original Icy Tower game will be included in the final project. The Icy Tower screenshot in the Reference & Inspiration section is used only to show the source of inspiration.
+**Licence note:** all assets will be original or taken from free-to-use CC0 / CC-BY sources. No original Icy Tower assets will be used.
 
-All external assets used in the project will have a recorded source and licence.
-
-Any asset that cannot legally be redistributed will be replaced before a public release.
-
-### Technical art rules
-
-- Consistent Pixels Per Unit settings will be used.
-- Android-appropriate texture compression will be used.
-- Sprite Atlases may be used where appropriate.
-- Characters must remain readable on a mobile screen.
-
-Sorting layers from back to front:
-
-`Background → Platforms → Collectibles → Player → Effects → UI`
+**Technical art rules:** mobile-friendly 2D sprite assets, portrait layout, and sorting layers ordered as Background → Platforms → Player → UI.
 
 ---
 
