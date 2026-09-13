@@ -112,112 +112,38 @@ stateDiagram-v2
 
 ## 5. Screens & UI
 
-### 1. Main Menu
+1. **Main Menu** — game title, PLAY button, CHARACTER SELECT button, High Score display, and a small sound/settings button.
 
-Contains:
+2. **Character Select** — three selectable character options. The currently selected character is highlighted, and a CONFIRM button starts the game with that character.
 
-- Game title
-- Play button
-- Character Selection button
-- High Score display
-- Audio / Settings button
+3. **Gameplay HUD** —
+   - Top Left: Current Score / Height.
+   - Top Right: High Score.
+   - Below the score: Combo indicator, shown only while a combo is active.
+   - Top Corner: Pause button.
+   - Bottom Left: Move Left button on mobile.
+   - Bottom Center: Jump button on mobile.
+   - Bottom Right: Move Right button on mobile.
 
-### 2. Character Selection
+4. **Game Over Screen** — final score, High Score, maximum height reached, best combo, RETRY button, and MAIN MENU button.
 
-The player chooses between **three playable characters**.
+5. **Pause Overlay** — RESUME, RESTART, and MAIN MENU.
 
-Contains:
+- **HUD during play:** only score, High Score, active combo, pause, and mobile movement controls are shown. Health bars, minimaps, inventory, and unnecessary information are deliberately absent so the player can focus on the platforms and character movement.
 
-- Character 1
-- Character 2
-- Character 3
-- Current selection indication
-- Continue button
-
-The selected character is saved and loaded when gameplay begins.
-
-The system will be designed so that additional characters could be added later if required.
-
-### 3. Gameplay
-
-Contains:
-
-- Player
-- Platforms
-- Background
-- Current Score / Height
-- Combo indicator
-- High Score
-- Pause button
-- Left touch control
-- Right touch control
-
-Example:
-
-```text
-+--------------------------------+
-| Score: 1250        Best: 3400  |
-| Combo x4                Pause   |
-|                                |
-|             =====              |
-|                                |
-|        PLAYER                  |
-|                                |
-|    =====             =====     |
-|                                |
-|                                |
-|   [ LEFT ]        [ RIGHT ]    |
-+--------------------------------+
-```
-
-### 4. Pause Menu
-
-Contains:
-
-- Resume
-- Restart
-- Main Menu
-- Sound toggle
-
-### 5. Game Over
-
-Displays:
-
-- Final Score
-- High Score
-- Maximum height
-- Best Combo
-- Retry button
-- Main Menu button
-
-### HUD during play
-
-The HUD will display only information that is useful during gameplay:
-
-- Current score / height
-- High Score
-- Combo when active
-- Pause button
-- Mobile movement controls
-
-The game will deliberately not include:
-
-- Health bar
-- Inventory
-- Minimap
-- Quest interface
-- Unnecessary menus during gameplay
-
-### Canvas setup
-
-- Screen Space – Overlay
-- CanvasScaler: **Scale With Screen Size**
-- Reference resolution: **1080 × 1920**
-- Portrait orientation
-- 9:16 reference aspect ratio
-- UI elements will use anchors and safe-area support for different Android devices.
-
----
+- **Canvas setup:** Screen Space – Overlay, with `CanvasScaler` set to **Scale With Screen Size**, reference resolution **1080 × 1920**, portrait orientation, and responsive anchors for different Android screen sizes.
++------------------------------+
+| Score: 1250     Best: 3400   |
+| Combo x3              Pause  |
+|                              |
+|          =====               |
+|                              |
+|        PLAYER                |
+|                              |
+|    =====          =====      |
+|                              |
+| [LEFT]   [JUMP]   [RIGHT]    |
++------------------------------+
 
 ## 6. Art & Audio
 
