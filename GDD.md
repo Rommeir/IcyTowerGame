@@ -152,68 +152,28 @@ stateDiagram-v2
 
 ## 7. Technical Design
 
-### Scenes
+**Scenes:** two scenes. `Menu.unity` contains the Main Menu and Character Select screens. `Game.unity` contains the gameplay, Pause overlay, and Game Over screen. Restart resets the current run without reloading the entire application.
 
-The initial project will contain three main scenes:
+**Packages / systems used:** Unity 2D, Physics2D, Unity UI, ScriptableObjects, Coroutines, Object Pooling, and Android Build Support.
 
-1. `MainMenu.unity`  
-   Main entry point and Main Menu.
+**Target device:** PC (Windows) for development and testing, plus an Android mobile build in portrait orientation.
 
-2. `CharacterSelection.unity`  
-   Selection of one of the three playable characters.
-
-3. `Gameplay.unity`  
-   Endless vertical gameplay, Pause, Game Over, and Retry.
-
-Retry will reset the gameplay state without restarting the entire application.
-
-### Packages / systems used
-
-- Unity 2D
-- Physics2D
-- Unity UI
-- Android Build Support
-- ScriptableObjects / serialized configuration
-- Unity audio
-- Coroutines
-- Events
-- Object Pooling
-- Mobile touch input
-
-### Target device
-
-Android smartphone.
-
-The project will use:
-
-**Unity 6 — version 6000.3.21f1**
-
-Final display orientation:
-
-**Portrait**
-
-Reference resolution:
-
-**1080 × 1920**
-
-### Architecture
+**Architecture:**
 
 ```mermaid
 graph TD
-    GM[GameManager<br/>game state / pause / death / restart]
-    P[PlayerController<br/>movement / landing / auto jump]
+    GM[GameManager<br/>game state, pause, restart]
+    P[PlayerController<br/>movement, jump, physics]
     PS[PlatformSpawner<br/>platform placement]
     OP[PlatformPool<br/>reusable platforms]
-    DM[DifficultyManager<br/>difficulty based on height]
-    SM[ScoreManager<br/>height / score / combo / high score]
+    SM[ScoreManager<br/>score, height, high score]
     CM[CharacterManager<br/>selected character]
-    U[UIManager<br/>menus / HUD / Game Over]
-    A[AudioManager<br/>music / SFX]
+    U[UIManager<br/>menus, HUD, game over]
+    A[AudioManager<br/>music and SFX]
     CFG[GameConfig<br/>ScriptableObject]
 
     GM --> P
     GM --> PS
-    GM --> DM
     GM --> SM
     GM --> U
     GM --> A
@@ -221,42 +181,31 @@ graph TD
     CM --> P
     CFG -.-> P
     CFG -.-> PS
-    CFG -.-> DM
 ```
 
 | Script | Responsibility |
 |---|---|
-| `GameManager` | Controls Playing, Paused, Game Over, and Restart states |
-| `PlayerController` | Reads horizontal input, handles movement, landings, and automatic jumping |
-| `PlatformSpawner` | Selects valid platform positions above the player |
-| `PlatformPool` | Reuses platform GameObjects instead of destroying them |
-| `PlatformBehaviour` | Shared base behaviour for platform objects |
-| `MovingPlatform` | Controls moving platforms |
-| `BreakablePlatform` | Handles delayed platform breaking |
-| `DisappearingPlatform` | Handles timed disappearance |
-| `BoostPlatform` | Applies a stronger upward jump |
-| `DifficultyManager` | Changes platform spacing and types based on height |
-| `ScoreManager` | Handles score, height, combo, and High Score |
-| `CharacterManager` | Stores which of the three characters was selected |
-| `UIManager` | Controls menus, HUD, Pause, and Game Over UI |
-| `AudioManager` | Controls music and sound effects |
-| `Collectible` | Handles collectible pickup and bonus score |
-| `GameConfig` | Stores editable gameplay tuning values |
+| `GameManager` | Singleton that manages Playing, Paused, and Game Over states, restart, and general game flow |
+| `PlayerController` | Reads left/right and jump input and controls player movement and physics |
+| `PlatformSpawner` | Creates valid platform positions above the player |
+| `PlatformPool` | Reuses platform objects instead of constantly creating and destroying them |
+| `ScoreManager` | Tracks height, score, combo, and High Score |
+| `CharacterManager` | Stores which of the three playable characters was selected |
+| `UIManager` | Controls Main Menu, HUD, Pause, and Game Over UI |
+| `AudioManager` | Plays gameplay sound effects and background music |
+| `GameConfig` | ScriptableObject that stores movement, jump, platform, and difficulty tuning values |
 
 ### The course features you are implementing
 
-1. **Object Pooling** — platforms are continuously entering and leaving the visible gameplay area because the game is endless. Instead of repeatedly using `Instantiate` and `Destroy`, a collection of platform objects will be reused. Platforms below the camera are returned to the pool and later placed above the player. This reduces unnecessary allocations and suits an endless mobile game.
+1. **Singleton** — `GameManager` will be a Singleton because only one global game-state manager should exist. It controls the current game state, pause, Game Over, and restart.
 
-2. **Coroutines** — time-based gameplay behaviours will use Coroutines. For example, a breakable platform can wait briefly after the player lands before breaking. Disappearing platforms can display a warning and then disappear. Coroutines can also control temporary power-ups, effects, and UI transitions.
+2. **Object Pooling** — platforms are reused through a pool. Platforms that move below the visible screen are returned to the pool and repositioned above the player. This avoids constantly using `Instantiate` and `Destroy` during an endless run.
 
-3. **Singleton Pattern** — `GameManager` will use the Singleton pattern because only one global game-state controller should exist. It manages Playing, Paused, and Game Over states. `AudioManager` may also use a Singleton if it needs to persist between scenes.
+3. **Coroutines** — Coroutines will be used for time-based actions such as breakable or disappearing platforms, short delays before restarting, and temporary visual or gameplay effects.
 
-4. **Events** — gameplay events such as score changes, combos, player death, collectibles, and height milestones can notify UI and audio systems without directly coupling those systems to `PlayerController`.
+4. **ScriptableObject** — `GameConfig` stores values such as movement speed, jump force, platform spacing, and difficulty settings. This allows balancing the game without changing the code.
 
-5. **ScriptableObject / Serialized Configuration** — movement, jump strength, platform spacing, difficulty, combo timing, and other values will be exposed outside the gameplay code so they can be adjusted quickly during playtesting.
-
-6. **Mobile Build** — the project will be compiled and tested on Android. Touch controls, portrait UI, safe-area support, performance, and resolution scaling are part of the actual design rather than being added only at the end.
-
+5. **Mobile Build** — the game will be compiled and tested on Android with portrait orientation and touch controls, while the Windows build will be used for development and testing.
 ---
 
 ## 8. Scope
