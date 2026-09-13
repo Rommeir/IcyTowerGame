@@ -15,15 +15,15 @@
 
 ## 1. High Concept
 
-The player controls one of three selectable characters climbing an endless vertical tower. The character automatically jumps whenever landing on a platform, while the player controls horizontal movement. Platforms become harder and more varied as height increases. Falling below the screen ends the run. The goal is to climb higher, build combos, collect items, and beat the high score.
+The player controls one of three selectable characters climbing an endless vertical tower. The character automatically jumps after landing, while the player controls left and right movement to build momentum and reach higher platforms. The camera scrolls upward as difficulty increases. Falling below the screen ends the run. The goal is to climb higher, build combos, and beat the high score.
 
 ### Design pillars
 
-1. **Simple controls, skill-based movement** — the player only controls horizontal movement while jumping is automatic. Complicated combat or large control schemes will not be added because they would distract from timing, momentum, and accurate landing.
+1. **Momentum-based movement** — success comes from controlling horizontal speed, timing, and landing position rather than pressing a jump button. This rules out complex combat, manual jumping, and abilities that replace the core movement challenge.
 
-2. **Always climb higher** — every gameplay system supports the main objective of moving upward and improving the player's score. Features that interrupt the vertical flow for long periods will be avoided.
+2. **Always moving upward** — the entire game is built around continuous vertical progression. Platforms, camera movement, scoring, and difficulty all support climbing higher. This rules out long horizontal sections, exploration areas, or mechanics that stop the upward flow.
 
-3. **Short runs with strong replayability** — losing should quickly lead to another attempt. High scores, combos, three selectable characters, special platforms, collectibles, and increasing difficulty encourage repeated runs.
+3. **Fast retry, high-score mastery** — runs are short, failure is immediate, and restarting takes only a few seconds. The main motivation is improving height, combos, and high score. This rules out long tutorials, story sequences, and complicated progression systems between runs.
 
 ---
 
