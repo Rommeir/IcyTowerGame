@@ -19,7 +19,7 @@ The player controls one of three selectable characters climbing an endless verti
 
 ### Design pillars
 
-1. **Simple controls, skill-based movement** — the player only controls horizontal movement; jumping is automatic. Complicated combat or large control schemes will not be added because they would distract from timing, momentum, and accurate landing.
+1. **Simple controls, skill-based movement** — the player only controls horizontal movement while jumping is automatic. Complicated combat or large control schemes will not be added because they would distract from timing, momentum, and accurate landing.
 
 2. **Always climb higher** — every gameplay system supports the main objective of moving upward and improving the player's score. Features that interrupt the vertical flow for long periods will be avoided.
 
@@ -29,13 +29,14 @@ The player controls one of three selectable characters climbing an endless verti
 
 ## 2. Reference & Inspiration
 
-![Icy Tower gameplay reference](images/icy-tower-reference.png)
+![Icy Tower gameplay reference](https://media.moddb.com/images/games/1/15/14104/hurry_up.png)
 
 - **Primary reference:** Icy Tower.
 - **Taking:** vertical platform climbing, automatic jumping after landing, horizontal movement, momentum-based jumps, increasing difficulty, height-based scoring, combos, and quick retries.
 - **Changing:** three selectable playable characters, mobile touch controls, original visual assets, different platform types, collectibles, optional power-ups, changing backgrounds, and modern mobile UI.
 - **Not taking:** original Icy Tower characters, copyrighted artwork, original audio, exact level layouts, or original game assets.
-- **Video:** A short Icy Tower gameplay reference video will be linked before final submission.
+- **Reference image:** the image above is used only as a visual reference for the original Icy Tower gameplay and will not be included as an in-game asset.
+- **Video:** a short Icy Tower gameplay reference video will be linked before final submission.
 
 The visual direction will be colorful, readable, and designed for a portrait mobile screen.
 
@@ -152,8 +153,6 @@ The MVP does not require every platform type. Additional types are part of the p
 
 ## 5. Screens & UI
 
-![Screen layout reference](images/icy-tower-screens.png)
-
 ### 1. Main Menu
 
 Contains:
@@ -177,6 +176,8 @@ Contains:
 - Continue button
 
 The selected character is saved and loaded when gameplay begins.
+
+The system will be designed so that additional characters could be added later if required.
 
 ### 3. Gameplay
 
@@ -282,9 +283,7 @@ The game will deliberately not include:
 | Game Over SFX | 1 | Original or properly licensed | Failure feedback |
 | Background Music | At least one loop | Original or properly licensed | Gameplay atmosphere |
 
-### Licence note
-
-No copyrighted artwork, characters, music, sound effects, levels, or other assets from the original Icy Tower game will be included in the final project.
+**Licence note:** no copyrighted artwork, characters, music, sound effects, levels, or other assets from the original Icy Tower game will be included in the final project. The Icy Tower screenshot in the Reference & Inspiration section is used only to show the source of inspiration.
 
 All external assets used in the project will have a recorded source and licence.
 
@@ -316,7 +315,7 @@ The initial project will contain three main scenes:
    Selection of one of the three playable characters.
 
 3. `Gameplay.unity`  
-   Endless vertical gameplay, pause, Game Over, and Retry.
+   Endless vertical gameplay, Pause, Game Over, and Retry.
 
 Retry will reset the gameplay state without restarting the entire application.
 
@@ -339,7 +338,7 @@ Android smartphone.
 
 The project will use:
 
-**Unity 6 — 6000.3.21f1**
+**Unity 6 — version 6000.3.21f1**
 
 Final display orientation:
 
@@ -379,36 +378,36 @@ graph TD
 
 | Script | Responsibility |
 |---|---|
-| `GameManager` | Controls Playing, Paused, Game Over and Restart states |
-| `PlayerController` | Reads horizontal input, handles movement, landings and automatic jumping |
+| `GameManager` | Controls Playing, Paused, Game Over, and Restart states |
+| `PlayerController` | Reads horizontal input, handles movement, landings, and automatic jumping |
 | `PlatformSpawner` | Selects valid platform positions above the player |
 | `PlatformPool` | Reuses platform GameObjects instead of destroying them |
 | `PlatformBehaviour` | Shared base behaviour for platform objects |
 | `MovingPlatform` | Controls moving platforms |
 | `BreakablePlatform` | Handles delayed platform breaking |
 | `DisappearingPlatform` | Handles timed disappearance |
-| `BoostPlatform` | Applies stronger upward jump |
+| `BoostPlatform` | Applies a stronger upward jump |
 | `DifficultyManager` | Changes platform spacing and types based on height |
-| `ScoreManager` | Handles score, height, combo and High Score |
+| `ScoreManager` | Handles score, height, combo, and High Score |
 | `CharacterManager` | Stores which of the three characters was selected |
-| `UIManager` | Controls menus, HUD, Pause and Game Over UI |
+| `UIManager` | Controls menus, HUD, Pause, and Game Over UI |
 | `AudioManager` | Controls music and sound effects |
 | `Collectible` | Handles collectible pickup and bonus score |
 | `GameConfig` | Stores editable gameplay tuning values |
 
 ### The course features you are implementing
 
-1. **Object Pooling** — platforms are continuously entering and leaving the visible gameplay area because the game is endless. Instead of repeatedly using `Instantiate` and `Destroy`, a collection of platform objects will be reused. Platforms below the camera are returned to the pool and later placed above the player. This reduces allocations and suits an endless mobile game.
+1. **Object Pooling** — platforms are continuously entering and leaving the visible gameplay area because the game is endless. Instead of repeatedly using `Instantiate` and `Destroy`, a collection of platform objects will be reused. Platforms below the camera are returned to the pool and later placed above the player. This reduces unnecessary allocations and suits an endless mobile game.
 
 2. **Coroutines** — time-based gameplay behaviours will use Coroutines. For example, a breakable platform can wait briefly after the player lands before breaking. Disappearing platforms can display a warning and then disappear. Coroutines can also control temporary power-ups, effects, and UI transitions.
 
-3. **Singleton Pattern** — `GameManager` will use the Singleton pattern because only one global game-state controller should exist. It manages Playing, Paused and Game Over states. `AudioManager` may also use a Singleton if it needs to persist between scenes.
+3. **Singleton Pattern** — `GameManager` will use the Singleton pattern because only one global game-state controller should exist. It manages Playing, Paused, and Game Over states. `AudioManager` may also use a Singleton if it needs to persist between scenes.
 
-4. **Events** — gameplay events such as score changes, combos, player death, collectibles, and height milestones can notify UI and audio systems without directly coupling them to `PlayerController`.
+4. **Events** — gameplay events such as score changes, combos, player death, collectibles, and height milestones can notify UI and audio systems without directly coupling those systems to `PlayerController`.
 
-5. **ScriptableObject / Serialized Configuration** — movement, jump strength, platform spacing, difficulty, combo timing and other values will be exposed outside the gameplay code so they can be adjusted quickly during playtesting.
+5. **ScriptableObject / Serialized Configuration** — movement, jump strength, platform spacing, difficulty, combo timing, and other values will be exposed outside the gameplay code so they can be adjusted quickly during playtesting.
 
-6. **Mobile Build** — the project will be compiled and tested on Android. Touch controls, portrait UI, safe-area support, performance and resolution scaling are part of the actual design.
+6. **Mobile Build** — the project will be compiled and tested on Android. Touch controls, portrait UI, safe-area support, performance, and resolution scaling are part of the actual design rather than being added only at the end.
 
 ---
 
