@@ -15,11 +15,11 @@
 
 ## 1. High Concept
 
-The player controls one of three selectable characters climbing an endless vertical tower. The character automatically jumps after landing, while the player controls left and right movement to build momentum and reach higher platforms. The camera scrolls upward as difficulty increases. Falling below the screen ends the run. The goal is to climb higher, build combos, and beat the high score.
+The player controls one of three selectable characters climbing an endless vertical tower. The player moves left and right and presses Jump to leap between platforms, using horizontal momentum and timing to reach greater heights. The camera scrolls upward as the difficulty increases. Falling below the screen ends the run. The goal is to climb higher, build combos, and beat the high score.
 
 ### Design pillars
 
-1. **Momentum-based movement** — success comes from controlling horizontal speed, timing, and landing position rather than pressing a jump button. This rules out complex combat, manual jumping, and abilities that replace the core movement challenge.
+1. **Momentum and timing-based movement** — success comes from controlling horizontal speed, choosing the right moment to jump, and landing accurately. This rules out complex combat and abilities that replace the core platforming challenge.
 
 2. **Always moving upward** — the entire game is built around continuous vertical progression. Platforms, camera movement, scoring, and difficulty all support climbing higher. This rules out long horizontal sections, exploration areas, or mechanics that stop the upward flow.
 
@@ -56,14 +56,16 @@ stateDiagram-v2
 
 ### Moment-to-moment rules
 
-- The player moves continuously left or right according to input and builds horizontal momentum.
-- Jumping is automatic: every valid landing on a platform immediately starts the next jump.
-- The player keeps horizontal momentum while airborne, so longer jumps require building speed before takeoff.
-- The camera scrolls upward once the player reaches the upper part of the screen.
+- The player controls horizontal movement to the left and right.
+- The player must press the Jump button to jump from a platform.
+- Holding left or right builds horizontal momentum.
+- Horizontal momentum affects how far the character travels during a jump.
+- The player must combine movement speed, jump timing, and landing position to reach higher platforms.
+- The camera scrolls upward as the player climbs higher.
 - Platforms below the visible area are recycled and reused above the player.
-- As height increases, platform spacing becomes less forgiving and special platform types may appear.
-- **Scoring:** the score increases according to the maximum height reached. Fast consecutive landings can increase a combo multiplier and award bonus points.
-- **Failure:** falling below the bottom of the screen immediately ends the run, freezes gameplay, shows the final score and high score, and allows a quick retry.
+- As height increases, platform spacing becomes more difficult and special platform types may appear.
+- **Scoring:** the score increases according to the maximum height reached. Consecutive successful jumps may increase a combo and award bonus points.
+- **Failure:** falling below the bottom of the screen ends the run, stops gameplay, and displays the final score and high score.
 
 ### Parameters you will need to tune
 
@@ -87,25 +89,24 @@ stateDiagram-v2
 
 ## 4. Controls & Input
 
-| Action | Keyboard / Mouse | Gamepad | Touch |
+| Action | Keyboard | Gamepad | Touch |
 |---|---|---|---|
-| Move Left | A / Left Arrow | Left Stick / D-pad Left | Hold left on-screen control |
-| Move Right | D / Right Arrow | Left Stick / D-pad Right | Hold right on-screen control |
-| Jump | Automatic | Automatic | Automatic |
-| Pause | Escape | Start | Pause button |
-| Confirm | Enter / Left Click | Main action button | Tap |
-| Retry | R / Enter | Main action button | Retry button |
-| Main Menu | Escape / UI button | Back button | Main Menu button |
+| Move Left | A / Left Arrow | D-Pad Left / Left Stick Left | Left button |
+| Move Right | D / Right Arrow | D-Pad Right / Left Stick Right | Right button |
+| Jump | Space | South button | Jump button |
+| Pause | Escape | Start | Pause icon |
+| Confirm / Select | Enter / Space | South button | Tap |
+| Retry | R / Enter | South button | Retry button |
 
-- Horizontal input is read continuously while gameplay is active.
-- Jumping is automatic and therefore does not require player input.
-- Touching a UI button must not accidentally send movement input to the character.
-- Gameplay input is disabled while paused.
-- Gameplay input is disabled after Game Over.
-- A short delay is used before the Retry button becomes active to prevent accidental restarts.
-- Losing application focus automatically pauses the game.
-- Keyboard controls are included for development and Unity Editor testing.
-- Touch controls are required for the final Android build.
+- Horizontal movement input is read continuously while gameplay is active.
+- The player jumps only when the Jump input is pressed.
+- Holding left or right builds horizontal momentum, which affects the distance of the jump.
+- Jump input is accepted only when the character is standing on a platform or during a short allowed jump window.
+- A press on a UI button such as Pause or Retry does not also trigger movement or jumping underneath it.
+- When the game is paused or the Game Over screen is active, gameplay input is ignored.
+- After Game Over, there is a short input lockout before Retry becomes available.
+- If the application loses focus, the game pauses automatically.
+- Keyboard controls are used for the Windows build, while on-screen touch controls are used for the Android mobile build.
 
 ---
 
