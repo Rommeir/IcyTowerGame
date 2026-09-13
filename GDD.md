@@ -212,79 +212,46 @@ graph TD
 
 ### 8.1 MVP — the game is not a game without these
 
-- [ ] Working Unity 6 `6000.3.21f1` project
-- [ ] Working Android portrait build
-- [ ] Main Menu
-- [ ] Character Selection screen
-- [ ] Three selectable playable characters
-- [ ] Gameplay scene
-- [ ] Horizontal player movement
-- [ ] Automatic jumping after landing
-- [ ] Reliable platform collision
-- [ ] Vertical camera movement
-- [ ] Endless platform generation
-- [ ] Object Pooling for platforms
-- [ ] Normal platforms
-- [ ] At least one special platform type
-- [ ] Height-based score
-- [ ] Local High Score
-- [ ] Gradually increasing difficulty
-- [ ] Falling below the screen causes Game Over
-- [ ] Game Over screen
-- [ ] Retry
-- [ ] Pause / Resume
-- [ ] Mobile left/right touch controls
-- [ ] Basic sound effects
-- [ ] At least one real use of a Coroutine
-- [ ] Singleton GameManager
+- [ ] One playable vertical tower with continuously generated platforms.
+- [ ] Player movement left and right, with manual jumping using Space / Jump.
+- [ ] A scrolling camera that follows the player upward.
+- [ ] Falling below the screen triggers Game Over.
+- [ ] Score based on the maximum height reached and a locally saved High Score.
+- [ ] Character Select with three playable characters.
+- [ ] Main Menu, Gameplay, Pause, and Game Over screens.
+- [ ] Object Pooling for reusable platforms.
+- [ ] At least one Coroutine used in a real gameplay feature.
+- [ ] `GameManager` implemented as a Singleton.
+- [ ] PC (Windows) build with keyboard controls.
+- [ ] Android mobile build with left, right, and Jump touch controls.
 
 ### 8.2 Polish — if the MVP is done and playable
 
-- [ ] Moving platforms
-- [ ] Breakable platforms
-- [ ] Disappearing platforms
-- [ ] Boost platforms
-- [ ] Combo system
-- [ ] Coins / collectibles
-- [ ] Simple power-ups
-- [ ] Changing backgrounds based on height
-- [ ] Character animations
-- [ ] Jump and landing effects
-- [ ] Combo effects
-- [ ] Height milestone effects
-- [ ] Better menu transitions
-- [ ] Background music
-- [ ] Additional platform visual variants
+- [ ] Moving, breakable, disappearing, or boost platforms.
+- [ ] Combo system for successful consecutive jumps.
+- [ ] Coins or other collectibles for bonus points.
+- [ ] Changing backgrounds as the player climbs higher.
+- [ ] Character jump, landing, and movement animations.
+- [ ] Sound effects and background music.
+- [ ] Extra visual effects for combos, special platforms, and height milestones.
+- [ ] One or two simple power-ups.
 
 ### 8.3 Explicitly out of scope — we are **not** building these
 
-- Multiplayer
-- Online multiplayer
-- Networking
-- Online accounts
-- Online leaderboards
-- Cloud saves
-- In-app purchases
-- Advertisements
-- Large story mode
-- Campaign mode
-- Hand-designed traditional levels
-- 3D environments
-- Open world
-- Enemies
-- Combat system
-- Boss battles
-- Character skill trees
-- Large inventory system
-- Level editor
-- Different gameplay abilities for each character
-- More than three playable characters for the initial submission
-- iOS build for the initial submission
-
+- Online or local multiplayer.
+- Online leaderboards, accounts, or cloud saves.
+- Combat, enemies, or boss fights.
+- A story mode or large campaign.
+- 3D graphics or 3D environments.
+- A level editor or handmade multi-level campaign.
+- Complex skill trees, inventory, or character upgrades.
+- In-app purchases or advertisements.
+- More than three playable characters for the initial version.
+- Different gameplay abilities or statistics for each character.
 ---
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
-| v0.1 | 2026-09-13 | Initial GDD for an Icy Tower-inspired mobile game |
+| v0.1 | 2026-09-13 | Initial GDD for an Icy Tower game |
