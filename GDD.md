@@ -132,18 +132,23 @@ stateDiagram-v2
 - **HUD during play:** only score, High Score, active combo, pause, and mobile movement controls are shown. Health bars, minimaps, inventory, and unnecessary information are deliberately absent so the player can focus on the platforms and character movement.
 
 - **Canvas setup:** Screen Space – Overlay, with `CanvasScaler` set to **Scale With Screen Size**, reference resolution **1080 × 1920**, portrait orientation, and responsive anchors for different Android screen sizes.
-+------------------------------+
-| Score: 1250     Best: 3400   |
-| Combo x3              Pause  |
-|                              |
-|          =====               |
-|                              |
-|        PLAYER                |
-|                              |
-|    =====          =====      |
-|                              |
-| [LEFT]   [JUMP]   [RIGHT]    |
-+------------------------------+
+┌──────────────────────────────┐
+│ SCORE: 1250      BEST: 3400  │
+│ COMBO: x3              ⏸     │
+│                              │
+│          ─────────           │
+│                              │
+│              ●               │
+│           PLAYER             │
+│                              │
+│    ─────────                 │
+│                    ───────   │
+│                              │
+│          ─────────           │
+│                              │
+│                              │
+│  ◀ LEFT    ▲ JUMP    RIGHT ▶ │
+└──────────────────────────────┘
 
 ## 6. Art & Audio
 
