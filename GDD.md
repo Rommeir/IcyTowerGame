@@ -31,18 +31,13 @@ The player controls one of three selectable characters climbing an endless verti
 
 ![Icy Tower gameplay reference](https://media.moddb.com/images/games/1/15/14104/hurry_up.png)
 
-- **Primary reference:** Icy Tower.
-- **Taking:** vertical platform climbing, automatic jumping after landing, horizontal movement, momentum-based jumps, increasing difficulty, height-based scoring, combos, and quick retries.
-- **Changing:** three selectable playable characters, mobile touch controls, original visual assets, different platform types, collectibles, optional power-ups, changing backgrounds, and modern mobile UI.
-- **Not taking:** original Icy Tower characters, copyrighted artwork, original audio, exact level layouts, or original game assets.
-- **Reference image:** the image above is used only as a visual reference for the original Icy Tower gameplay and will not be included as an in-game asset.
-- **Video:** a short Icy Tower gameplay reference video will be linked before final submission.
+- **Primary reference:** Icy Tower (Free Lunch Design, 2001).  
+  **Taking:** vertical tower climbing, automatic jumping after landing, horizontal momentum-based movement, scrolling camera, increasing difficulty, combo rewards, and high-score-focused gameplay.  
+  **Not taking:** the original characters, artwork, audio, exact platform layouts, or original game assets.
 
-The visual direction will be colorful, readable, and designed for a portrait mobile screen.
+- **Video:** Icy Tower gameplay reference — focusing on movement momentum, automatic jumping, platform climbing, combos, and increasing difficulty.
 
-The tower environment can visually change as the player climbs higher, for example:
-
-**Tower → City → Clouds → Sky → Space**
+The look we are aiming for keeps the simple vertical platforming structure of Icy Tower, but adapts it to a modern portrait mobile game with three selectable original characters, new platform types, collectibles, and changing environments.
 
 ---
 
